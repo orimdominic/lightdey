@@ -1,0 +1,4 @@
+- Set index.html properties for the app
+- Persist user selections in localStorage?
+- When area or street cannot be found, apologise and ask user to submit
+- https://medium.com/better-programming/how-to-setup-continuous-integration-ci-with-react-circleci-and-github-e0efd5040b03?source=post_internal_links---------2----------------------------
