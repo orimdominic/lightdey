@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import UserSelectionProvider from './custom-hooks/user-selection';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserSelectionProvider>
+      <App />
+    </UserSelectionProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
