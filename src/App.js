@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Areas from './pages/Areas';
 import States from './pages/States';
 import Streets from './pages/Streets';
+import Details from './pages/Details';
 
 function App() {
   return (
@@ -14,12 +15,6 @@ function App() {
         <ul className="inline">
           <li className="inline px-2">
             <Link to="/states">States</Link>
-          </li>
-          <li className="inline px-2">
-            <Link to="/areas">Areas</Link>
-          </li>
-          <li className="inline px-2">
-            <Link to="/streets">Streets</Link>
           </li>
         </ul>
       </nav>
@@ -35,6 +30,9 @@ function App() {
         </Route>
         <Route exact path="/streets">
           <Streets />
+        </Route>
+        <Route exact path="/details">
+          <Details />
         </Route>
       </Switch>
     </Router>

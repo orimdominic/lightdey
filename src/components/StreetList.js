@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { getState } from 'ng-streets';
-import { useUserSelection } from '../custom-hooks/user-selection';
 import { Link } from 'react-router-dom';
+import { useUserSelection } from '../custom-hooks/user-selection';
 
 const StreetList = (props) => {
   const getArea = (areaName, areas) => {
@@ -36,11 +36,14 @@ const StreetList = (props) => {
           .filter((s) => s.name.toLowerCase().includes(query.toLowerCase()))
           .map((s) => (
             <Link
-              to="/streets"
+              to="/details"
               key={s.name.toLowerCase().replace('/', ' ').replace(' ', '-')}
               className="border-gray-400 flex flex-row mb-2"
             >
-              <button onClick={(e) => persistSelStreet(s)} className="w-full">
+              <button
+                onClick={(e) => persistSelStreet(s.name)}
+                className="w-full"
+              >
                 <div className="shadow border select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4">
                   <div className="flex-1 pl-1 mr-16">
                     <div className="font-medium dark:text-white">{s.name}</div>
