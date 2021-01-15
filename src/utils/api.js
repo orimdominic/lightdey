@@ -1,22 +1,38 @@
+import { updatesToUi } from './helpers';
+
 const apiUrl = '/api';
 
-async function getUpdates(dbPath) {
+async function getUpdates(dbPath, signal) {
   try {
-    const streetStatusPromise = await fetch(`${apiUrl}/get`, {
-      method: 'POST',
-      body: JSON.stringify({
-        dbPath,
-      }),
+    const streetUpdates = await fetch(`${apiUrl}/get?location=${dbPath}`, {
+      method: 'GET',
+      signal,
     });
-    const streetStatus = await streetStatusPromise.json()
-    return toArray(streetStatus);
+    const { updates } = await streetUpdates.json();
+    return !!updates ? updatesToUi(updates) : [];
   } catch (err) {
     console.error(err);
+    return [];
   }
 }
 
-const toArray = (obj) => {
-  return Object.values(obj)
+async function postUpdate(status, dbPath) {
+  const updatedOn = Date.now();
+  try {
+    const streetUpdates = await fetch(`${apiUrl}/post`, {
+      method: 'POST',
+      body: JSON.stringify({
+        dbPath,
+        status,
+        updatedOn,
+      }),
+    });
+    const { updates } = await streetUpdates.json();
+    return updatesToUi(updates);
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 }
 
-export { getUpdates };
+export { getUpdates, postUpdate };
