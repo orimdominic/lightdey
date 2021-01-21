@@ -1,9 +1,4 @@
-const updateOpts = new Map()
-  .set(0, 'Down NEPA')
-  .set(1, 'Low current')
-  .set(2, 'Up NEPA');
-
-const getPath = ({ state, area, street }) => {
+const getLocationString = ({ state, area, street }) => {
   return `${state.toLowerCase()}/${area
     .toLowerCase()
     .replaceAll('/', ' ')
@@ -11,10 +6,6 @@ const getPath = ({ state, area, street }) => {
     .toLowerCase()
     .replaceAll('/', ' ')
     .replaceAll(' ', '-')}`;
-};
-
-const toArray = (obj) => {
-  return Object.values(obj);
 };
 
 const sortTimeDesc = (u1, u2) => {
@@ -26,23 +17,28 @@ const sortTimeDesc = (u1, u2) => {
   return 0;
 };
 
-const updatesToUi = (updates) => {
+const sortNameAsc = (param1, param2) => {
+  if (param1.name > param2.name) {
+    return 1;
+  } else if (param2.name > param1.name) {
+    return -1;
+  }
+  return 0;
+};
+
+const updatesToUi = (updates, sortTimeDesc, updateStatusMap) => {
   return [
-    ...toArray(updates)
+    ...Object.values(updates)
       .sort(sortTimeDesc)
       .map((update) => {
         return {
           ...update,
           updatedOnText: update.updatedOn, // get time is about x time ago
-          statusText: updateOpts.get(update.status),
+          statusText: updateStatusMap.get(update.status),
           // get status as status-n // for class name
         };
       }),
   ];
 };
 
-const getRandomNumber = (min, max) => {
-  return Math.random() * (max - min) + min;
-};
-
-export { getPath, updatesToUi, updateOpts, getRandomNumber };
+export { getLocationString, updatesToUi, sortTimeDesc, sortNameAsc };

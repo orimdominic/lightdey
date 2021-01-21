@@ -3,7 +3,7 @@ const { dbRef } = require('./firebase');
 // NOTE_TO_SELF: Avoid having many calculations in serverless functions as timeout is 10 secs
 
 module.exports = async (req, res) => {
-  allowDev(req,res)
+  allowDev(req, res); // implicit dep??
   const method = req.method.toLowerCase();
   switch (method) {
     case 'get':

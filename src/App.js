@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ScrollToTop from './custom-hooks/ScrollToTop';
+import ScrollToTop from './components/ScrollToTop';
 import { Areas, Home, Streets, States, Updates } from './pages/index';
 
 function App() {

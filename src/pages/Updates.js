@@ -1,30 +1,43 @@
-import { getUpdates, postUpdate } from '../utils/api';
-import { useUserSelection } from '../custom-hooks/user-selection';
-import { getPath, updateOpts } from '../utils/helpers';
+import { postUpdate } from '../utils/api';
+import { useUserLocationContext } from '../contexts/useUserLocationContext';
+import { getLocationString, updatesToUi, sortTimeDesc } from '../utils/helpers';
+import { updateStatusMap } from '../utils/constants';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Updates = (props) => {
+export default function Updates () {
+  let apiUrl = '/api/updates';
+  if (process.env.NODE_ENV === 'development') {
+    apiUrl = 'http://localhost:3001' + apiUrl;
+  }
   const [updates, setUpdates] = useState([]);
-  const { selection } = useUserSelection();
-  const dbPath = getPath(selection);
+  const { selection } = useUserLocationContext();
+  const location = getLocationString(selection);
+  const getUpdates = async function () {
+    axios
+      .get(`${apiUrl}?location=${location}`)
+      .then(({ data: { updates } }) => {
+        const uiUpdates = updatesToUi(updates, sortTimeDesc, updateStatusMap);
+        debugger
+        setUpdates(uiUpdates);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    getUpdates(dbPath, signal).then(setUpdates);
-    return () => {
-      controller.abort();
-    };
-  }, [dbPath]);
+    getUpdates();
+  }, []);
 
   return (
     <div>
       <ul>
         {updates && updates.length ? (
-          updates.map((updt) => {
+          updates.map((u) => {
             return (
-              <li data-key={updt.updatedOn} key={updt.updatedOn}>
-                {updt.statusText}-{updt.updatedOn}
+              <li data-key={u.updatedOn} key={u.updatedOn}>
+                {u.statusText}-{u.updatedOn}
               </li>
             );
           })
@@ -32,13 +45,15 @@ const Updates = (props) => {
           <p>No updates yet</p>
         )}
       </ul>
-      {Array.from(updateOpts.keys()).map((key) => {
+      {Array.from(updateStatusMap.keys()).map((key) => {
         return (
           <button
-            onClick={(e) => postUpdate(key, dbPath).then(setUpdates)}
+            onClick={(e) =>
+              postUpdate(key, location, updatesToUi).then(setUpdates)
+            }
             key={key}
           >
-            {updateOpts.get(key)}
+            {updateStatusMap.get(key)}
           </button>
         );
       })}
@@ -46,4 +61,3 @@ const Updates = (props) => {
   );
 };
 
-export default Updates;

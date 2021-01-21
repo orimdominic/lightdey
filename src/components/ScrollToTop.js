@@ -13,5 +13,5 @@ function ScrollToTop({ history, children }) {
 
   return <Fragment>{children}</Fragment>;
 }
-
+// Change the name of this guy to withScrollToTop? What will I call it? A component wrapper?
 export default withRouter(ScrollToTop);

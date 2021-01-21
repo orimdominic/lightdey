@@ -1,38 +1,20 @@
-import { useState } from 'react';
-import { getStates } from 'ng-streets';
-import State from './State';
-import FilterInput from './FilterInput';
-import OverlayContainer from './OverlayContainer';
+import { State } from './';
+import PropTypes from 'prop-types';
+
+StateList.propTypes = {
+  list: PropTypes.array.isRequired,
+};
 
 export default function StateList(props) {
-  const ngStates = getStates();
-  const [query, setQuery] = useState('');
-  const [showOverlay, setShowOverlay] = useState(false);
-
-  const onQueryInputChange = (e) => {
-    const val = e.target.value;
-    setQuery(val);
-  };
-
   return (
     <>
-      <FilterInput
-        onInputChange={onQueryInputChange}
-        placeholder="Spell the state name"
-      />
-      <div className="grid pt-6 pb-12 -m-2 phone:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        {ngStates &&
-          ngStates
-            .filter((st) => st.name.toLowerCase().includes(query.toLowerCase()))
-            .map((st) => (
-              <State
-                key={st.name.toLowerCase().replace(' ', '-')}
-                state={st}
-                toggleOverlay={setShowOverlay}
-              />
-            ))}
-      </div>
-      {showOverlay ? <OverlayContainer /> : null}
+      {props.list.length
+        ? props.list.map((st) => (
+            <State key={st.name.toLowerCase().replace(' ', '-')} state={st} />
+          ))
+        : null}
     </>
   );
 }
+
+// TODO: Insert a user friendly UI for empty state lists

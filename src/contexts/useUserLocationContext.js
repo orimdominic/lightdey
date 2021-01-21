@@ -4,21 +4,21 @@ const defaultSelection = {
   area: '',
   street: '',
 };
-const UserSelectionContext = createContext();
-export const useUserSelection = () => useContext(UserSelectionContext);
-const UserSelectionProvider = ({ children }) => {
+const UserLocationContext = createContext();
+export const useUserLocationContext = () => useContext(UserLocationContext);
+const UserLocationProvider = ({ children }) => {
   const [selection, setSelection] = useState(defaultSelection);
   const setState = (s) => setSelection({ ...selection, state: s });
   const setArea = (a) => setSelection({ ...selection, area: a });
   const setStreet = (s) => setSelection({ ...selection, street: s });
 
   return (
-    <UserSelectionContext.Provider
+    <UserLocationContext.Provider
       value={{ selection, setState, setArea, setStreet }}
     >
       {children}
-    </UserSelectionContext.Provider>
+    </UserLocationContext.Provider>
   );
 };
 
-export default UserSelectionProvider;
+export default UserLocationProvider;

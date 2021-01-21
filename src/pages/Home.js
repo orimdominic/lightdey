@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import NigeriaMap from '../components/NigeriaMap';
+import { NigeriaMap, Header } from '../components';
 import '../assets/styles/home.css';
-import Header from '../components/Header';
 
-export default function Home(props) {
+export default function Home() {
   return (
     <div className="">
       {/* Nav */}
