@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ScrollToTop from './components/ScrollToTop';
+import { ScrollToTop } from './hocs';
 import { Areas, Home, Streets, States, Updates } from './pages/index';
 
 function App() {
@@ -13,13 +13,13 @@ function App() {
           <Route exact path="/states">
             <States />
           </Route>
-          <Route exact path="/areas">
+          <Route exact path="/states/:stateId/areas">
             <Areas />
           </Route>
-          <Route exact path="/streets">
+          <Route exact path="/states/:stateId/areas/:areaId/streets">
             <Streets />
           </Route>
-          <Route exact path="/updates">
+          <Route exact path="/states/:stateId/areas/:areaId/streets/:streetId">
             <Updates />
           </Route>
         </Switch>

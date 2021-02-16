@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 
-function ScrollToTop({ history, children }) {
+export const ScrollToTop = withRouter(({ history, children }) => {
   useEffect(() => {
     const unlisten = history.listen(() => {
       window.scrollTo(0, 0);
@@ -12,6 +12,6 @@ function ScrollToTop({ history, children }) {
   }, [history]);
 
   return <Fragment>{children}</Fragment>;
-}
+});
 // Change the name of this guy to withScrollToTop? What will I call it? A component wrapper?
-export default withRouter(ScrollToTop);
+// export const  withRouter(ScrollToTop);

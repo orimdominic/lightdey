@@ -8,6 +8,15 @@ const getLocationString = ({ state, area, street }) => {
     .replaceAll(' ', '-')}`;
 };
 
+/**
+ * Returns the value gotten from converting `str` to
+ * lowercase and replacing all spaces with '-'
+ * @param {string} str the string value to convert
+ */
+const stringToId = (str) => {
+  return str.toLowerCase().replace(' ', '-');
+};
+
 const sortTimeDesc = (u1, u2) => {
   if (u1.updatedOn < u2.updatedOn) {
     return 1;
@@ -33,12 +42,16 @@ const updatesToUi = (updates, sortTimeDesc, updateStatusMap) => {
       .map((update) => {
         return {
           ...update,
-          updatedOnText: update.updatedOn, // get time is about x time ago
           statusText: updateStatusMap.get(update.status),
-          // get status as status-n // for class name
         };
       }),
   ];
 };
 
-export { getLocationString, updatesToUi, sortTimeDesc, sortNameAsc };
+export {
+  getLocationString,
+  updatesToUi,
+  sortTimeDesc,
+  sortNameAsc,
+  stringToId,
+};

@@ -1,4 +1,6 @@
-export default function LightBulbMd(props) {
+import React from 'react';
+
+export const LightBulbMd = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,6 +17,6 @@ export default function LightBulbMd(props) {
       />
     </svg>
   );
-}
+};
 
 // Icon from HeroIcons

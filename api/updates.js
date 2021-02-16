@@ -3,7 +3,7 @@ const { dbRef } = require('./firebase');
 // NOTE_TO_SELF: Avoid having many calculations in serverless functions as timeout is 10 secs
 
 module.exports = async (req, res) => {
-  allowDev(req, res); // implicit dep??
+  allowDev(req, res);
   const method = req.method.toLowerCase();
   switch (method) {
     case 'get':
@@ -23,20 +23,20 @@ async function getUpdates(req, res) {
     .limitToLast(5)
     .once('value');
   const updates = updatesSnapshot.toJSON();
-  return res.status(200).send({ updates: updates || [] });
+  return res.status(200).send({ data: updates || [] });
 }
 
 async function postUpdate(req, res) {
-  const { location, status, updatedOn } = JSON.parse(req.body);
-  await dbRef.child(`${location}/${updatedOn}`).set({ status, updatedOn });
+  const { locationPath, status, updatedOn } = JSON.parse(req.body);
+  await dbRef.child(`${locationPath}/${updatedOn}`).set({ status, updatedOn });
   const latestFiveUpdatesSnapshot = await dbRef
-    .child(`${location}`)
+    .child(`${locationPath}`)
     .orderByValue()
     .limitToLast(5)
     .once('value');
   const latestFiveUpdates = latestFiveUpdatesSnapshot.toJSON();
-  await dbRef.child(`${location}`).set(latestFiveUpdates);
-  return res.status(200).send({ updates: latestFiveUpdates || [] });
+  await dbRef.child(`${locationPath}`).set(latestFiveUpdates);
+  return res.status(200).send({ data: latestFiveUpdates || [] });
 }
 
 function allowDev(req, res) {

@@ -1,4 +1,1 @@
-export {
-  default as UserLocationProvider,
-  useUserLocationContext,
-} from './useUserLocationContext';
+export * from './useUserLocationContext';

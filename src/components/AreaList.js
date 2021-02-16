@@ -1,21 +1,22 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import Area from './Area';
+import { AreaItem } from './';
 
-AreaList.propTypes = {
-  list: PropTypes.array.isRequired,
-};
-
-export default function AreaList(props) {
+export const AreaList = (props) => {
   const { list } = props;
   return (
     <>
       {list.length ? (
         props.list.map((a) => (
-          <Area key={a.name.toLowerCase().replace(' ', '-')} area={a} />
+          <AreaItem key={a.name.toLowerCase().replace(' ', '-')} area={a} />
         ))
       ) : (
         <div>No areas available</div>
       )}
     </>
   );
-}
+};
+
+AreaList.propTypes = {
+  list: PropTypes.array.isRequired,
+};

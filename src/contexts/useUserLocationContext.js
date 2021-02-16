@@ -6,7 +6,7 @@ const defaultSelection = {
 };
 const UserLocationContext = createContext();
 export const useUserLocationContext = () => useContext(UserLocationContext);
-const UserLocationProvider = ({ children }) => {
+export const UserLocationProvider = ({ children }) => {
   const [selection, setSelection] = useState(defaultSelection);
   const setState = (s) => setSelection({ ...selection, state: s });
   const setArea = (a) => setSelection({ ...selection, area: a });
@@ -21,4 +21,4 @@ const UserLocationProvider = ({ children }) => {
   );
 };
 
-export default UserLocationProvider;
+// export default UserLocationProvider;

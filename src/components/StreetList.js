@@ -1,22 +1,25 @@
+import React from 'react';
 import PropTypes from 'prop-types';
-import Street from './Street';
+import { StreetItem } from './';
 
-StreetList.propTypes = {
-  list: PropTypes.array.isRequired,
-};
-
-export default function StreetList(props) {
+export const StreetList = (props) => {
   const { list } = props;
 
   return (
     <>
       {list.length &&
         list.map((st) => (
-          <Street key={st.name.toLowerCase().replace(' ', '-')} street={st} />
+          <StreetItem
+            key={st.name.toLowerCase().replace(' ', '-')}
+            street={st}
+          />
         ))}
     </>
   );
-}
+};
+StreetList.propTypes = {
+  list: PropTypes.array.isRequired,
+};
 
 /*           <Link
               to="/updates"

@@ -1,8 +1,9 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { NigeriaMap, Header } from '../components';
 import '../assets/styles/home.css';
 
-export default function Home() {
+export const Home = () => {
   return (
     <div className="">
       {/* Nav */}
@@ -10,46 +11,40 @@ export default function Home() {
       {/* Banner */}
       <section className="text-gray-400 bg-black">
         <div className="flex flex-col items-center px-5 py-12 mx-auto md:flex-row">
-          <div className="flex flex-col items-center mb-8 text-center lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:items-center md:text-center md:mb-0">
-            <h1 className="mb-4 font-medium text-white text-8xl sm:text-6xl lg:text-8xl">
+          <div className="flex flex-col items-center text-center sm:mb-8 lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:items-center md:text-center md:mb-0">
+            <h1 className="mb-4 font-medium text-8xl sm:text-6xl lg:text-8xl">
               Light dey?
             </h1>
-            <h2 className="max-w-xs mb-8 leading-relaxed text-gray-100">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </h2>
+            <div className="relative mt-4 mb-8">
+              <p className="absolute top-0 max-w-xs text-lg font-light leading-normal text-mustard-400 text-top lg:text-2xl">
+                Emeka battery don die and him no get light. Him no know which
+                street for him area get light.
+              </p>
+              <p className="max-w-xs text-lg font-light leading-normal text-mustard-400 text-bottom lg:text-2xl">
+                Wale wan know weda make him buy fuel as him dey come back house
+                based on how how long light don dey.
+              </p>
+            </div>
           </div>
           <div className="w-5/6 lg:max-w-lg lg:w-full md:w-1/2">
             <NigeriaMap />
           </div>
         </div>
       </section>
-      {/* CTA */}
-      <div className="">
-        <div className="px-5 py-12 mx-auto">
-          <div className="flex flex-col w-full text-center">
-            <p className="mb-2 text-3xl font-medium text-black sm:text-4xl">
-              Warri no dey carry last.
-            </p>
-            <p className="mx-auto text-2xl leading-tight text-gray-800 lg:w-2/3">
-              Go choose the state wey the street dey!
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="mb-8">
-        <div className="flex items-center justify-center mx-auto">
-          <Link to="/states" className="">
-            <button className="px-10 py-4 bg-black rounded-sm focus:outline-none">
-              <span className="text-white">Oya now!</span>
-            </button>
+      <div className="py-8 lg:py-10">
+        <div className="flex flex-col items-center justify-center px-5">
+          <Link to="/states">
+            <div className="px-6 py-2 transition-shadow bg-black rounded-sm ld-box-shadow lg:px-10 lg:py-4 hover:shadow-none">
+              <span className="font-light text-mustard-400 text-md lg:text-2xl">
+                Lets go there!
+              </span>
+            </div>
           </Link>
-          <Link to="/" className="absolute pinging -z-5">
-            <button className="px-10 py-4 bg-black rounded-sm focus:outline-none">
-              <span className="text-white">Oya now!</span>
-            </button>
-          </Link>
+          <p className="pt-6 text-2xl text-center lg:pt-8 lg:text-3xl">
+            because Warri no dey carry last!
+          </p>
         </div>
       </div>
     </div>
   );
-}
+};

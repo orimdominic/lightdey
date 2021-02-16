@@ -1,5 +1,5 @@
-export { default as Areas } from './Areas';
-export { default as Home } from './Home';
-export { default as States } from './States';
-export { default as Streets } from './Streets';
-export { default as Updates } from './Updates';
+export * from './Areas';
+export * from './Home';
+export * from './States';
+export * from './Streets';
+export * from './Updates';

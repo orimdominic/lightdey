@@ -1,12 +1,8 @@
+import React from 'react';
+
 import PropTypes from 'prop-types';
 
-FilterInput.propTypes = {
-  onInputChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  query: PropTypes.string.isRequired,
-};
-
-export default function FilterInput(props) {
+export const FilterInput = (props) => {
   const { query, placeholder, onInputChange } = props;
   return (
     <div className="mx-auto">
@@ -27,4 +23,9 @@ export default function FilterInput(props) {
       </div>
     </div>
   );
-}
+};
+FilterInput.propTypes = {
+  onInputChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  query: PropTypes.string.isRequired,
+};

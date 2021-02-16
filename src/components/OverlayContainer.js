@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function OverlayContainer({ children }) {
+export const OverlayContainer = ({ children }) => {
   const elRef = useRef(null);
 
   if (!elRef.current) {
@@ -24,4 +24,4 @@ export default function OverlayContainer({ children }) {
     </div>,
     elRef.current
   );
-}
+};
