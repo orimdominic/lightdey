@@ -25,4 +25,4 @@ yarn-error.log*
 *.log
 *.snap
 
-.vercel
+/.vercel

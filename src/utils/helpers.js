@@ -1,13 +1,3 @@
-const getLocationString = ({ state, area, street }) => {
-  return `${state.toLowerCase()}/${area
-    .toLowerCase()
-    .replaceAll('/', ' ')
-    .replace(' ', '-')}/${street
-    .toLowerCase()
-    .replaceAll('/', ' ')
-    .replaceAll(' ', '-')}`;
-};
-
 /**
  * Returns the value gotten from converting `str` to
  * lowercase and replacing all spaces with '-'
@@ -49,7 +39,6 @@ const updatesToUi = (updates, sortTimeDesc, updateStatusMap) => {
 };
 
 export {
-  getLocationString,
   updatesToUi,
   sortTimeDesc,
   sortNameAsc,
