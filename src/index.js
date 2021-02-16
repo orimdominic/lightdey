@@ -10,9 +10,7 @@ TimeAgo.addDefaultLocale(en);
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserSelectionProvider>
       <App />
-    </UserSelectionProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
