@@ -1,22 +1,38 @@
 {
-  "name": "rxtbook-recipe",
-  "version": "0.1.0",
-  "private": true,
+  "name": "lightdey",
+  "version": "0.0.0",
+  "private": false,
+  "license": "MIT",
   "dependencies": {
+    "@craco/craco": "^6.0.0",
+    "@tailwindcss/postcss7-compat": "^2.0.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "autoprefixer": "^9",
+    "axios": "^0.21.1",
+    "firebase": "^8.2.2",
+    "javascript-time-ago": "^2.3.4",
+    "ng-streets": "^1.0.0",
+    "postcss": "^7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
+    "react-time-ago": "^6.2.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "web-vitals": "^0.2.4"
   },
-    "dev": "BROWSER=none react-scripts start",    "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+  "scripts": {
+    "dev": "BROWSER=none craco start",
+    "serverless": "vercel dev --listen 3001",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test --watchAll",
     "eject": "react-scripts eject",
-    "format": "prettier --write src/**/*.{js,jsx}"
+    "format": "prettier --write src/**/*.{js,jsx,html,css} api/**/*.js",
+    "storybook": "BROWSER=none start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": [
@@ -24,19 +40,21 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-        "devDependencies": {
-      "prettier": "^2.0.5"
-    }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.15",
+    "@storybook/addon-essentials": "^6.1.15",
+    "@storybook/addon-links": "^6.1.15",
+    "@storybook/addon-storyshots": "^6.1.15",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "6.1.15",
+    "prettier": "^2.0.5",
+    "prop-types": "^15.7.2",
+    "react-test-renderer": "^17.0.1"
   }
 }
